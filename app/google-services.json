@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "426205166326",
+    "firebase_url": "https://intershala-51c3f.firebaseio.com",
+    "project_id": "intershala-51c3f",
+    "storage_bucket": "intershala-51c3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426205166326:android:60291f42dd221bee4f8ad7",
+        "android_client_info": {
+          "package_name": "com.example.intershala"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426205166326-3qhjdvjvkgt566r7p2js8l42j0i36nht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.intershala",
+            "certificate_hash": "343713011db2726f9fc1015f90802e74b5708bf7"
+          }
+        },
+        {
+          "client_id": "426205166326-sgngbo1hkujktb638jjgpg1ss4qrcb0m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCA-nRa574OUWxYCgeVMff6vj2WOW06YxI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426205166326-sgngbo1hkujktb638jjgpg1ss4qrcb0m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
