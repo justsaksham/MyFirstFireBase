@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.text.isDigitsOnly
+import com.example.intershala.Model.USERFORM
 import com.example.intershala.Model.Userimfo
 import com.google.firebase.database.*
 
@@ -27,6 +28,7 @@ class EnterUser : AppCompatActivity() {
     var Number: String = ""
     var head=1
     var low=1
+    var Userdata:USERFORM= USERFORM(0,0,0,0,0)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enter_user)
@@ -60,10 +62,29 @@ class EnterUser : AppCompatActivity() {
 
             h = checkNumber(number, etclientNumber.text.toString())
            // head=h;
+
             initializeEdit()
 
         }
         btnSubmit.setOnClickListener {
+            if(etArea.text.isEmpty()  || etArea==null){
+                Toast.makeText(this,"Area is required field",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            if(Property.text.isEmpty()|| Property==null){
+                Toast.makeText(this,"Property name is required field",Toast.LENGTH_LONG).show()
+             return@setOnClickListener
+            }
+            if(etCity.text.isEmpty()|| etCity==null){
+                Toast.makeText(this,"Property name is required field",Toast.LENGTH_LONG).show()
+            return@setOnClickListener
+            }
+            if(Owner.text.isEmpty()){
+            Owner.setText("N/A")
+            }
+            if(language.text.isEmpty()){
+            language.setText("N/A")
+            }
 
             if (head != 0) {
                 low=0
@@ -72,10 +93,19 @@ class EnterUser : AppCompatActivity() {
                     Property.text.toString(),
                     etCity.text.toString(),
                     Owner.text.toString(),
-                    language.text.toString()
+                    language.text.toString(),
+                    Number,
+                    "Pending"
+                ,etArea.text.toString()
                 )
-           //     Toast.makeText(this@EnterUser, "${etclientNumber.text.toString()}", Toast.LENGTH_LONG).show()
-                val ref = databaseReference.child(number).child(etclientNumber.text.toString()).setValue(info)
+
+                val applicationSubmitted = Userdata!!.ApplicationSubmitted+1
+                val pendendingApproval =Userdata!!.PendendingApproval+1
+                databaseReference.child(Number).child("PendendingApproval").setValue(pendendingApproval)
+                databaseReference.child(Number).child("ApplicationSubmitted").setValue(applicationSubmitted)
+
+                val ref = databaseReference.child(Number).child(etclientNumber.text.toString()).setValue(info)
+                System.out.println(databaseReference.child(Number).child(etclientNumber.text.toString()).key)
 
                 Toast.makeText(this@EnterUser,"SuccessFully Submitted",Toast.LENGTH_LONG).show()
                 low=0
@@ -83,6 +113,8 @@ class EnterUser : AppCompatActivity() {
 //                startActivity(intent)
 //             //   finishAffinity()
 //                finish()
+                ll.visibility = View.INVISIBLE
+
             }
         }
     }
@@ -101,7 +133,7 @@ class EnterUser : AppCompatActivity() {
     fun checkNumber(number:String,number2:String):Int{
        var h=0
        val ref=databaseReference.child(number)
-       databaseReference.child(number).addValueEventListener(
+       databaseReference.addListenerForSingleValueEvent(
            object :ValueEventListener{
                override fun onCancelled(p0: DatabaseError) {
 
@@ -109,12 +141,13 @@ class EnterUser : AppCompatActivity() {
 
                override fun onDataChange(p0: DataSnapshot) {
                  //To change body of created functions use File | Settings | File Templates.
+                   System.out.println("called")
                    val obj=p0.children
                    for(i in obj){
                       var j= i.children
                        for( l in j) {
-                           if (i.key.toString().equals(etclientNumber.text.toString())) {
-                             //  System.out.println(i.key.toString())
+                           if (l.key.toString().equals(etclientNumber.text.toString())) {
+                               System.out.println(l.key.toString())
                                this@EnterUser.head = 0
 
                               break
@@ -134,6 +167,8 @@ class EnterUser : AppCompatActivity() {
                    }
                    if (head != 0) {
                        ll.visibility = View.VISIBLE
+                       Userdata = p0.child(Number).getValue(USERFORM::class.java)!!
+
                    } else {
                        ll.visibility = View.GONE
                        if(low==1) {
@@ -185,5 +220,4 @@ class EnterUser : AppCompatActivity() {
 //    return h
 //}
 //
-
 }

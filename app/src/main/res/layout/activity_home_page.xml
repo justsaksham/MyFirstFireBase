@@ -12,6 +12,7 @@
     android:layout_height="wrap_content"
     android:id="@+id/btnDataEntry"
     android:text="DataEntry"
+    android:layout_margin="30dp"
 
     />
     <Button
@@ -19,11 +20,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnDataValidation"
         android:text="Data validation"
+        android:layout_margin="30dp"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogout"
         android:text="Logout"
+        android:layout_margin="30dp"
         />
 </LinearLayout>

@@ -31,7 +31,9 @@ lateinit var btnDataEntry:Button
             finishAffinity()
         }
         btnDataValidation.setOnClickListener {
-            Toast.makeText(this@HomePage,"This part will be covered in stage to assessment",Toast.LENGTH_LONG).show()
+            val intent= Intent(this@HomePage,DataValidation::class.java)
+            intent.putExtra("number",number)
+            startActivity(intent)
         }
     }
 }

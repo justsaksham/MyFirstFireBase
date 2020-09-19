@@ -4,64 +4,96 @@ import android.widget.ProgressBar;
 
 import java.io.Serializable;
 
+import kotlinx.android.parcel.Parcelize;
+
 public class Userimfo implements Serializable {
-    String ClientNumber;
-    String Property;
-    String Area;
-    String OwenerName="N/A";
-    String Preferred="N/A";
+    public String clientNumber;
+    public String property;
+    public String location;
+    public String area;
+    public String owenerName="N/A";
+    public String preferredLanguage="N/A";
+    public String userNumber;
+    public String status;
     public Userimfo(){
 
     }
-    public Userimfo(String a,String b,String c,String d,String e){
-        ClientNumber=a;
-        Property=b;
-        Area=c;
-        if(d!=null)
-        OwenerName=d;
-        if(e!=null)
-            Preferred=d;
+    public Userimfo(String clientNumber,String property,String area,String owenerName,
+                    String preferredLanguage,String userNumber,String status,String location){
+       this.clientNumber=clientNumber;
+        this.property=property;
+        this.area=area;
+        if(owenerName!=null)
+        this.owenerName=owenerName;
+        if(preferredLanguage!=null)
+            this.preferredLanguage=preferredLanguage;
 
-
+        this.userNumber=userNumber;
+        this.status=status;
+        this.location=location;
     }
 
     public String getClientNumber() {
-        return ClientNumber;
+        return clientNumber;
     }
 
     public void setClientNumber(String clientNumber) {
-        ClientNumber = clientNumber;
+        this.clientNumber = clientNumber;
     }
 
     public String getProperty() {
-        return Property;
+        return property;
     }
 
     public void setProperty(String property) {
-        Property = property;
+        this.property = property;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getArea() {
-        return Area;
+        return area;
     }
 
     public void setArea(String area) {
-        Area = area;
+        this.area = area;
     }
 
     public String getOwenerName() {
-        return OwenerName;
+        return owenerName;
     }
 
     public void setOwenerName(String owenerName) {
-        OwenerName = owenerName;
+        this.owenerName = owenerName;
     }
 
-    public String getPreferred() {
-        return Preferred;
+    public String getPreferredLanguage() {
+        return preferredLanguage;
     }
 
-    public void setPreferred(String preferred) {
-        Preferred = preferred;
+    public void setPreferredLanguage(String preferredLanguage) {
+        this.preferredLanguage = preferredLanguage;
+    }
+
+    public String getUserNumber() {
+        return userNumber;
+    }
+
+    public void setUserNumber(String userNumber) {
+        this.userNumber = userNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

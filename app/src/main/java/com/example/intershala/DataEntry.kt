@@ -1,10 +1,13 @@
 package com.example.intershala
 
+import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import com.example.intershala.Model.USERFORM
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_data_entry.*
 
@@ -26,9 +29,9 @@ lateinit var btnEnterData:Button
         txtPendendingApproval=findViewById(R.id.txtPendendingApproval)
         txtLeadGenerated=findViewById(R.id.txtLeadGenerated)
          number=intent.getStringExtra("number")
-        txtLeadGenerated.text="0"
-        txtApplicationApproved.text="0"
-        txtApplicationRejected.text="0"
+//        txtLeadGenerated.text="0"
+//        txtApplicationApproved.text="0"
+//        txtApplicationRejected.text="0"
 
         initialize()
         btnEnterData.setOnClickListener {
@@ -42,6 +45,8 @@ lateinit var btnEnterData:Button
     }
    fun initialize(){
         val databaseReference= FirebaseDatabase.getInstance().getReference("UsersNumberTable")
+
+        val href=databaseReference.child(number)
        databaseReference.child(number).addValueEventListener(
            object : ValueEventListener{
                override fun onCancelled(p0: DatabaseError) {
@@ -51,13 +56,20 @@ lateinit var btnEnterData:Button
 
                override fun onDataChange(p0: DataSnapshot) {
                   //To change body of created functions use File | Settings | File Templates.
-                   if(p0!=null){
-                       txtApplicationSubmitted.text= p0.childrenCount.toString()
-                       txtPendendingApproval.text=p0.childrenCount.toString()
+                   if(p0.exists()){
+                       txtApplicationSubmitted.text= (p0.childrenCount - 5).toString()
+                       txtPendendingApproval.text=p0.child("PendendingApproval").value.toString()
+                       txtApplicationApproved.text=p0.child("ApplicationApproved").value.toString()
+                       txtApplicationRejected.text=p0.child("ApplicationRejected").value.toString()
+                       txtLeadGenerated.text=p0.child("LeadGenerated").value.toString()
                    }
                    else{
-                       txtApplicationSubmitted.text= "0"
+                       val userform=USERFORM(0,0,0,0,0)
+                       databaseReference.child(number).setValue(userform)
+                       val obj=databaseReference.child(number)
+                       txtApplicationSubmitted.text= obj.child("ApplicationSubmitted").key
                        txtPendendingApproval.text= "0"
+                    //   Toast.makeText(this@DataEntry,"${databaseReference.child(number)}",Toast.LENGTH_LONG).show()
 
                    }
 

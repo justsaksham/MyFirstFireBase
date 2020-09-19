@@ -42,17 +42,21 @@ class MainActivity : AppCompatActivity() {
         etOtp=findViewById(R.id.etOtp)
         btnGetOtp=findViewById(R.id.btnGetOtp)
         btnSubmitOtp=findViewById(R.id.btnSubmitOtp)
-        ccp=findViewById(R.id.ccp)
+        ccp= findViewById(R.id.ccp)
         btnGetOtp.setOnClickListener {
         //    if (validator.validate()) {
             val num=etUserNumber.text.toString()
             if(num.length!=10){
-                Toast.makeText(this@MainActivity,"$num Length should be 10",Toast.LENGTH_LONG).show()
+              //  Toast.makeText(this@MainActivity,"$num Length should be 10",Toast.LENGTH_LONG).show()
+                    etUserNumber.error="Length should be 10"
+                    etUserNumber.requestFocus()
                 return@setOnClickListener
 
             }
             if(!TextUtils.isDigitsOnly(num)){
-                Toast.makeText(this@MainActivity,"$num Must Contain Only Digits",Toast.LENGTH_LONG).show()
+            //    Toast.makeText(this@MainActivity,"$num Must Contain Only Digits",Toast.LENGTH_LONG).show()
+                etUserNumber.error="Must Contain Only Digits"
+                etUserNumber.requestFocus()
                 return@setOnClickListener
 
             }
@@ -70,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 this@MainActivity,
                 phoneAuthCallbacks
             )
-//            Toast.makeText(this@MainActivity,"$number",Toast.LENGTH_LONG).show()
+        Toast.makeText(this@MainActivity,"Check OTP In your Inbox",Toast.LENGTH_LONG).show()
 //            }
 //            else{
 //
@@ -79,16 +83,22 @@ class MainActivity : AppCompatActivity() {
         btnSubmitOtp.setOnClickListener {
 
             val code=etOtp.text.toString()
-            if(code.equals("")){
-                Toast.makeText(this@MainActivity,"$code Should not be Null",Toast.LENGTH_LONG).show()
+            if(code.isEmpty()){
+               // Toast.makeText(this@MainActivity,"$code Should not be Null",Toast.LENGTH_LONG).show()
+                etOtp.error="Length should be 6"
+                etOtp.requestFocus()
                 return@setOnClickListener
             }
             if(code.length!=6){
-                Toast.makeText(this@MainActivity,"$code 6 lenght otp",Toast.LENGTH_LONG).show()
+              //  Toast.makeText(this@MainActivity,"$code 6 lenght otp",Toast.LENGTH_LONG).show()
+                etOtp.error="Length should be 6"
+                etOtp.requestFocus()
                 return@setOnClickListener
             }
             if(!TextUtils.isDigitsOnly(code)){
                 Toast.makeText(this@MainActivity,"$code Only Digit are Required",Toast.LENGTH_LONG).show()
+                etOtp.error="Must have only Digits"
+                etOtp.requestFocus()
                 return@setOnClickListener
 
             }

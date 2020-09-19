@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeStatus"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/OwnerRecyclerView"
+        android:layout_margin="20dp"
+
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Property Name:         "
+            android:id="@+id/txtPropertyName"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/txtPropertyLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location:             "
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Locality:             "
+            android:id="@+id/txtLocality"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="OWNER Number:         "
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtOwnerNumber"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Owner Name :"
+            android:id="@+id/txtOwnerName"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prefered Language: "
+            android:id="@+id/txtLanguage"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Application Status"
+            android:textColor="#000000"
+            android:layout_marginTop="10dp"
+            android:id="@+id/txtApplicationStatus"
+            />
+    </LinearLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CALL OWNER"
+        android:layout_margin="5dp"
+        android:id="@+id/btnCallOwner"
+        android:textColor="#000000"
+
+        />
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/status"
+        android:id="@+id/spinner"
+        android:textColor="#000000"
+
+        android:layout_margin="2dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:maxLines="10"
+        android:minLines="1"
+        android:hint="Comment"
+        android:id="@+id/etCommentBox"
+        android:layout_margin="5dp"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnSubmit"
+        android:text="Submit"
+        android:layout_margin="5dp"
+        android:textColor="#000000"
+
+        />
+</LinearLayout>

@@ -2,4 +2,10 @@
     <string name="app_name">InterShala</string>
     <string name="error">please enter Valid number</string>
     <string name="Invalid">Invalid Number</string>
+    <array name="status">
+        <item>N/A</item>
+        <item>Pending</item>
+        <item>Approved</item>
+        <item>Rejected</item>
+    </array>
 </resources>
